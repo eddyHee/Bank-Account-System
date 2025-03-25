@@ -11,6 +11,7 @@ public class BankAccount {
         this.balance = balance;
     }
 
+    // test comment for git 
     public float getBalance() {
         return this.balance;
     }
