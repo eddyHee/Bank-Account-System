@@ -34,12 +34,21 @@ public class BankAccount {
         System.out.flush();
     }
 
-    public void deposit(Integer value) {
+    public void deposit(float value) {
         if (value > 0) {
             this.balance += value;
         } else {
             UI.display("Error happen when deposit", true, true);
         }
+    }
+
+    public void withdraw(float amount) {
+        this.balance -= amount;
+
+        if (this.balance < 0) {
+            UI.display("Error happen when withdraw!", true, true);
+        }
+
     }
 
 }
