@@ -1,4 +1,6 @@
 
+import java.util.Optional;
+
 public class Main {
 
     private static final int MAX_SIZE = 5;
@@ -107,7 +109,26 @@ public class Main {
     }
 
     private static void deposit(BankAccount account) {
-        String amount = UI.readFromConsole("Please enter amount: ");
+        boolean validInput = false;
+
+        while (!validInput) {
+            String amount = UI.readFromConsole("Please enter amount: ");
+
+            Optional<Integer> optionalValue = Convert.convertStringToInt(amount);
+
+            if (optionalValue.isPresent()) {
+                int value = optionalValue.get();
+                if (isValidDepositAmount(value)) {
+                    account.deposit(value);
+                    System.out.println("Deposited: " + value);
+                    validInput = true;
+                } else {
+                    System.out.println("Please enter a positive amount.");
+                }
+            } else {
+                System.out.println("Invalid input. Please enter a valid number.");
+            }
+        }
 
     }
 
@@ -117,6 +138,12 @@ public class Main {
 
     private static void checkBalance(BankAccount account) {
         account.printInformation();
+    }
+
+    private static boolean isValidDepositAmount(int amount) {
+
+        return amount > 0;
+
     }
 
 }

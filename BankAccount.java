@@ -34,4 +34,12 @@ public class BankAccount {
         System.out.flush();
     }
 
+    public void deposit(Integer value) {
+        if (value > 0) {
+            this.balance += value;
+        } else {
+            UI.display("Error happen when deposit", true, true);
+        }
+    }
+
 }
