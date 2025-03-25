@@ -1,11 +1,13 @@
 
 public class Main {
 
-    static Customer[] customers = new Customer[5];
+    private static final int MAX_SIZE = 5;
+
+    static Customer[] customers = new Customer[MAX_SIZE];
 
     // create some customer data
     static {
-        for (int i = 0; i < customers.length; i++) {
+        for (int i = 0; i < MAX_SIZE; i++) {
             customers[i] = new Customer("Smith" + i, "C", String.valueOf(i));
         }
     }
@@ -20,17 +22,15 @@ public class Main {
         stop:
         for (;;) {
             switch (UI.showOptionPanel()) {
-                case '1':
+                case '1' ->
                     printAllUser();
-                    break;
-                case '2':
+                case '2' ->
                     printAllUserWithBankInfo();
-                    break;
-                case '3':
+                case '3' ->
                     interactWithUser();
-                    break;
-                case 'q':
+                case 'q' -> {
                     break stop;
+                }
             }
         }
         UI.display("Program finished", true, true);
@@ -92,17 +92,15 @@ public class Main {
         stop:
         for (;;) {
             switch (UI.showBankInteractionPanel()) {
-                case '1':
+                case '1' ->
                     deposit(bAccount);
-                    break;
-                case '2':
+                case '2' ->
                     withdraw(bAccount);
-                    break;
-                case '3':
+                case '3' ->
                     checkBalance(bAccount);
-                    break;
-                case 'q':
+                case 'q' -> {
                     break stop;
+                }
             }
         }
         UI.display("Customer bank interaction finished", true, true);
