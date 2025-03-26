@@ -28,6 +28,9 @@ public class BankServicesInteraction {
                     withdraw(bAccount);
                 case '3' ->
                     checkBalance(bAccount);
+                case '4' -> {
+                    bAccount.printTransaction();
+                }
                 case 'q' -> {
                     break stop;
                 }

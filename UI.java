@@ -34,7 +34,7 @@ public final class UI {
             char choice = readChar();
             clearInputBuffer();
 
-            if (isValidInput(choice)) {
+            if (isValidInput(choice, '1', '3')) {
                 return choice;
             }
             display(INVALID_INPUT_MESSAGE);
@@ -48,15 +48,15 @@ public final class UI {
             char choice = readChar();
             clearInputBuffer();
 
-            if (isValidInput(choice)) {
+            if (isValidInput(choice, '1', '4')) {
                 return choice;
             }
             display(INVALID_INPUT_MESSAGE);
         }
     }
 
-    private static boolean isValidInput(char choice) {
-        return choice >= '1' & choice <= '3' || choice == 'q';
+    private static boolean isValidInput(char choice, int min, int max) {
+        return choice >= min & choice <= max || choice == 'q';
     }
 
     public static void display(String text) {
