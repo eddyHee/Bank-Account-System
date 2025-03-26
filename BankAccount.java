@@ -2,13 +2,15 @@
 public class BankAccount {
 
     private float balance;
+    private String accountName;
 
     public BankAccount() {
         this.balance = 0;
     }
 
-    public BankAccount(float balance) {
+    public BankAccount(float balance, String accountName) {
         this.balance = balance;
+        this.accountName = accountName;
     }
 
     // test comment for git 
@@ -49,6 +51,14 @@ public class BankAccount {
             UI.display("Error happen when withdraw!", true, true);
         }
 
+    }
+
+    public String getAccountName() {
+        return this.accountName;
+    }
+
+    public void setAccountName(String accountName) {
+        this.accountName = accountName;
     }
 
 }

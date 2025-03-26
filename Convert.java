@@ -1,7 +1,7 @@
 
 import java.util.Optional;
 
-public class Convert {
+public final class Convert {
 
     // prevent initialize
     private Convert() {

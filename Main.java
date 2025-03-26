@@ -71,7 +71,14 @@ public class Main {
         UI.display("you entered: " + userId, true, true);
         customer.printInformationWithBankInfo();
 
-        customerBankInteraction(customer.getBankAccount());
+        String bankName;
+        BankAccount bankAccount;
+        do {
+            bankName = UI.readFromConsole("Please enter bank Name: ");
+            bankAccount = customer.getBankAccountByName(bankName);
+        } while (bankAccount == null);
+
+        customerBankInteraction(bankAccount);
 
     }
 

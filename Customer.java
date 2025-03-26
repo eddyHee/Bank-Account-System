@@ -1,11 +1,14 @@
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Customer {
 
     private String firstName;
     private String lastName;
     private final String id;
 
-    private BankAccount bankAccount;
+    private List<BankAccount> bankAccounts;
 
     public Customer() {
         this.id = "Invalid";
@@ -16,10 +19,10 @@ public class Customer {
         this.lastName = lastName;
         this.id = id;
 
-        bankAccount = new BankAccount();
+        this.bankAccounts = new ArrayList<>();
     }
 
-    public String getName() {
+    public String getCustomerInfo() {
         return firstName + " " + this.lastName + " (ID: " + this.id + ")";
     }
 
@@ -27,19 +30,27 @@ public class Customer {
         return this.id;
     }
 
-    public BankAccount getBankAccount() {
-        return this.bankAccount;
+    public BankAccount getBankAccountByName(String accountName) {
+        for (BankAccount account : this.bankAccounts) {
+            if (account.getAccountName().equals(accountName)) {
+                return account;
+            }
+        }
+        return null;
     }
 
     public void printInformation() {
-        UI.display("    " + this.getName(), false, true);
+        UI.display("    " + this.getCustomerInfo(), false, true);
         System.out.flush();
     }
 
     public void printInformationWithBankInfo() {
-        UI.display("    " + this.getName(), false, true);
-        UI.display("    ");
-        this.bankAccount.printInformation();
+        UI.display("    " + this.getCustomerInfo(), false, true);
+        for (BankAccount bankAccount : bankAccounts) {
+            UI.display("    ");
+            bankAccount.printInformation();
+        }
+
         System.out.flush();
     }
 
