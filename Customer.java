@@ -51,11 +51,6 @@ public class Customer {
         return null;
     }
 
-    public void printInformation() {
-        UI.display("    " + this.getCustomerInfo(), false, true);
-        System.out.flush();
-    }
-
     public void printInformationWithBankInfo() {
         UI.display("    " + this.getCustomerInfo(), false, true);
         if (!this.bankAccounts.isEmpty()) {

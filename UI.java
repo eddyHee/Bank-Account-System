@@ -5,20 +5,44 @@ import java.util.Scanner;
 public final class UI {
 
     private static final String MENU_TEXT = """
-        Please Choose from the options below:
-            1. Print all current users.
-            2. Print all users with bank balance.
-            3. enter user Id to start transaction.
-            q. Quit program.
-        Enter:\s""";
+    =====================================================
+    |    Please Choose from the options below:          |
+    |     1. Print all current users.                   |
+    |     2. Print all users with bank balance.         |
+    |     3. enter user Id to start transaction.        |
+    |                                                   |
+    |     q. Quit program.                              |
+    |                                                   |
+    =====================================================
+    
+    Enter your choice:\s""";
 
     private static final String BANK_INTERACTION_MENU_TEXT = """
-        Please Choose from the options below:
-            1. Deposit.
-            2. withdraw.
-            3. check Balance.
-            q. Quit program.
-        Enter:\s""";
+    =====================================================
+    |    Please Choose from the options below:          |
+    |     1. Deposit.                                   |
+    |     2. withdraw.                                  |
+    |     3. check Balance.                             |
+    |     4. print transactions.                        |
+    |                                                   |
+    |     q. Quit program.                              |
+    |                                                   |
+    =====================================================
+
+    Enter your choice:\s""";
+
+    public static final String CUSTOMER_INFO_START = """
+    =====================================================
+           Following are all customers information       
+    =====================================================
+    """;
+
+    public static final String CUSTOMER_INFO_END = """
+    -----------------------------------------------------
+           All Customers information printed       
+    =====================================================
+
+    """;
 
     private static final String INVALID_INPUT_MESSAGE = "Invalid Input...\n";
     private static final String IO_ERROR_MESSAGE = "IO Error";
@@ -53,6 +77,11 @@ public final class UI {
             }
             display(INVALID_INPUT_MESSAGE);
         }
+    }
+
+    public static void printCustomerInformation(Customer customer) {
+        UI.display("\t" + customer.getCustomerInfo(), false, true);
+        System.out.flush();
     }
 
     private static boolean isValidInput(char choice, int min, int max) {
@@ -142,6 +171,11 @@ public final class UI {
         } while (bankAccount == null);
 
         return bankAccount;
+    }
+
+    public static void clearScreen() {
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
     }
 
 }
