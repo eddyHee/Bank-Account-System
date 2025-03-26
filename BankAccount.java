@@ -56,7 +56,7 @@ public class BankAccount {
     }
 
     public void printInformation() {
-        UI.display("    " + this.getBalance(), false, true);
+        UI.display("    " + this.accountName + ": $" + this.getBalance(), false, true);
         System.out.flush();
     }
 
