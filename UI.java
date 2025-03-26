@@ -1,5 +1,6 @@
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Scanner;
 
 public final class UI {
@@ -44,6 +45,19 @@ public final class UI {
 
     """;
 
+    public static final String CUSTOMER_INFO_WITH_BANK_START = """
+    =================================================================
+        Following are all customers information with Bank Account      
+    =================================================================
+    """;
+
+    public static final String CUSTOMER_INFO_WITH_BANK_END = """
+    -----------------------------------------------------------------
+        All customers information with Bank Account printed     
+    =================================================================
+
+    """;
+
     private static final String INVALID_INPUT_MESSAGE = "Invalid Input...\n";
     private static final String IO_ERROR_MESSAGE = "IO Error";
     private static final String BUFFER_CLEAR_ERROR = "Error clearing input buffer";
@@ -82,6 +96,22 @@ public final class UI {
     public static void printCustomerInformation(Customer customer) {
         UI.display("\t" + customer.getCustomerInfo(), false, true);
         System.out.flush();
+    }
+
+    public static void printInformationWithBankInfo(Customer customer) {
+        UI.display("    " + customer.getCustomerInfo(), false, true);
+        List<BankAccount> bankAccounts = customer.getBankAccounts();
+        if (!bankAccounts.isEmpty()) {
+            for (BankAccount bankAccount : bankAccounts) {
+                UI.display("    ");
+                bankAccount.printInformation();
+            }
+        } else {
+            UI.display("    This user dont have any bank account.");
+        }
+
+        System.out.flush();
+
     }
 
     private static boolean isValidInput(char choice, int min, int max) {
@@ -143,7 +173,7 @@ public final class UI {
         } while (customer == null);
 
         UI.display("you entered: " + userId, true, true);
-        customer.printInformationWithBankInfo();
+        printInformationWithBankInfo(customer);
         return customer;
     }
 

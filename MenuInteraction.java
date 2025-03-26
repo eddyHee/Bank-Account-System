@@ -7,18 +7,17 @@ public class MenuInteraction {
     }
 
     public static boolean mainMenu() {
-        switch (UI.showOptionPanel()) {
+        char choice = UI.showOptionPanel();
+        UI.clearScreen();
+        switch (choice) {
             case '1' -> {
-                UI.clearScreen();
                 printAllUser();
             }
             case '2' -> {
-                UI.clearScreen();
                 printAllUserWithBankInfo();
             }
             case '3' -> {
                 BankServicesInteraction.interactWithUser(customers);
-                UI.clearScreen();
             }
             case 'q' -> {
                 return true;
@@ -40,13 +39,13 @@ public class MenuInteraction {
 
     private static void printAllUserWithBankInfo() {
 
-        UI.display("Start printing all customers:", true, true);
+        UI.display(UI.CUSTOMER_INFO_WITH_BANK_START, true, true);
 
         for (Customer customer : customers) {
-            customer.printInformationWithBankInfo();
+            UI.printInformationWithBankInfo(customer);
         }
 
-        UI.display("Finish print all customers.\n====", true, true);
+        UI.display(UI.CUSTOMER_INFO_WITH_BANK_END, true, true);
     }
 
 }

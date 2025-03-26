@@ -21,14 +21,23 @@ public class BankServicesInteraction {
 
         stop:
         for (;;) {
-            switch (UI.showBankInteractionPanel()) {
-                case '1' ->
+            char choice = UI.showBankInteractionPanel();
+            UI.clearScreen();
+            switch (choice) {
+                case '1' -> {
+                    // UI.clearScreen();
                     deposit(bAccount);
-                case '2' ->
+                }
+                case '2' -> {
+                    // UI.clearScreen();
                     withdraw(bAccount);
-                case '3' ->
+                }
+                case '3' -> {
+                    // UI.clearScreen();
                     checkBalance(bAccount);
+                }
                 case '4' -> {
+                    // UI.clearScreen();
                     bAccount.printTransaction();
                 }
                 case 'q' -> {

@@ -51,19 +51,8 @@ public class Customer {
         return null;
     }
 
-    public void printInformationWithBankInfo() {
-        UI.display("    " + this.getCustomerInfo(), false, true);
-        if (!this.bankAccounts.isEmpty()) {
-            for (BankAccount bankAccount : bankAccounts) {
-                UI.display("    ");
-                bankAccount.printInformation();
-            }
-        } else {
-            UI.display("    This user dont have any bank account.");
-        }
-
-        System.out.flush();
-
+    public List<BankAccount> getBankAccounts() {
+        return this.bankAccounts;
     }
 
 }
