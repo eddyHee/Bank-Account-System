@@ -20,6 +20,7 @@ public class Customer {
         this.id = id;
 
         this.bankAccounts = new ArrayList<>();
+        this.bankAccounts.add(new BankAccount(10, "ABC"));
     }
 
     public String getCustomerInfo() {
@@ -28,6 +29,17 @@ public class Customer {
 
     public String getId() {
         return this.id;
+    }
+
+    public boolean createBankAccount(String accountName, int amount) {
+        try {
+            BankAccount bankAccount = new BankAccount(amount, accountName);
+            this.bankAccounts.add(bankAccount);
+            return true;
+        } catch (Exception e) {
+            UI.display("Error when creating account.", true, true);
+            return false;
+        }
     }
 
     public BankAccount getBankAccountByName(String accountName) {
@@ -46,12 +58,17 @@ public class Customer {
 
     public void printInformationWithBankInfo() {
         UI.display("    " + this.getCustomerInfo(), false, true);
-        for (BankAccount bankAccount : bankAccounts) {
-            UI.display("    ");
-            bankAccount.printInformation();
+        if (!this.bankAccounts.isEmpty()) {
+            for (BankAccount bankAccount : bankAccounts) {
+                UI.display("    ");
+                bankAccount.printInformation();
+            }
+        } else {
+            UI.display("    This user dont have any bank account.");
         }
 
         System.out.flush();
+
     }
 
 }

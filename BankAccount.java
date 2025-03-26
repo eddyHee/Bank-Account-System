@@ -13,7 +13,14 @@ public class BankAccount {
         this.accountName = accountName;
     }
 
-    // test comment for git 
+    public String getAccountName() {
+        return this.accountName;
+    }
+
+    public void setAccountName(String accountName) {
+        this.accountName = accountName;
+    }
+
     public float getBalance() {
         return this.balance;
     }
@@ -31,9 +38,13 @@ public class BankAccount {
         return withDrawAmount <= balance;
     }
 
-    public void printInformation() {
-        UI.display("    " + this.getBalance(), false, true);
-        System.out.flush();
+    public void withdraw(float amount) {
+        this.balance -= amount;
+
+        if (this.balance < 0) {
+            UI.display("Error happen when withdraw!", true, true);
+        }
+
     }
 
     public void deposit(float value) {
@@ -44,21 +55,9 @@ public class BankAccount {
         }
     }
 
-    public void withdraw(float amount) {
-        this.balance -= amount;
-
-        if (this.balance < 0) {
-            UI.display("Error happen when withdraw!", true, true);
-        }
-
-    }
-
-    public String getAccountName() {
-        return this.accountName;
-    }
-
-    public void setAccountName(String accountName) {
-        this.accountName = accountName;
+    public void printInformation() {
+        UI.display("    " + this.getBalance(), false, true);
+        System.out.flush();
     }
 
 }
