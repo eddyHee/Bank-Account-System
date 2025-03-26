@@ -13,7 +13,7 @@ public class MenuInteraction {
             case '2' ->
                 printAllUserWithBankInfo();
             case '3' ->
-                interactWithUser();
+                BankServicesInteraction.interactWithUser(customers);
             case 'q' -> {
                 return true;
             }
@@ -41,40 +41,6 @@ public class MenuInteraction {
         }
 
         UI.display("Finish print all customers.\n====", true, true);
-    }
-
-    private static void interactWithUser() {
-        String userId;
-        Customer customer;
-        do {
-            userId = UI.readFromConsole("Please enter UserId: ");
-            customer = getCustomerFromId(userId);
-        } while (customer == null);
-
-        UI.display("you entered: " + userId, true, true);
-        customer.printInformationWithBankInfo();
-
-        String bankName;
-        BankAccount bankAccount;
-        do {
-            bankName = UI.readFromConsole("Please enter bank Name: ");
-            bankAccount = customer.getBankAccountByName(bankName);
-        } while (bankAccount == null);
-
-        BankServicesInteraction.customerBankInteraction(bankAccount);
-
-    }
-
-    private static Customer getCustomerFromId(String userId) {
-        Customer target = null;
-        for (Customer c : customers) {
-            if (c.getId().equals(userId)) {
-                target = c;
-                break;
-            }
-        }
-
-        return target;
     }
 
 }

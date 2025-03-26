@@ -7,7 +7,15 @@ public class BankServicesInteraction {
 
     }
 
-    public static void customerBankInteraction(BankAccount bAccount) {
+    public static void interactWithUser(Customer[] customers) {
+        Customer customer = UI.getCustomerFromUserInput(customers);
+        BankAccount bankAccount = UI.getBankAccountFromUserInput(customer);
+
+        customerBankInteraction(bankAccount);
+
+    }
+
+    private static void customerBankInteraction(BankAccount bAccount) {
 
         UI.display("Customer bank interaction started", false, true);
 

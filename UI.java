@@ -101,4 +101,47 @@ public final class UI {
 
         return line;
     }
+
+    public static Customer getCustomerFromUserInput(Customer[] customers) {
+        String userId;
+        Customer customer;
+        do {
+            userId = UI.readFromConsole("Please enter UserId: ");
+            customer = getCustomerFromId(userId, customers);
+            if (customer == null) {
+                display("Please enter a valid user id.", true, true);
+            }
+        } while (customer == null);
+
+        UI.display("you entered: " + userId, true, true);
+        customer.printInformationWithBankInfo();
+        return customer;
+    }
+
+    private static Customer getCustomerFromId(String userId, Customer[] customers) {
+        Customer target = null;
+        for (Customer c : customers) {
+            if (c.getId().equals(userId)) {
+                target = c;
+                break;
+            }
+        }
+
+        return target;
+    }
+
+    public static BankAccount getBankAccountFromUserInput(Customer customer) {
+        String bankName;
+        BankAccount bankAccount;
+        do {
+            bankName = UI.readFromConsole("Please enter bank Name: ");
+            bankAccount = customer.getBankAccountByName(bankName);
+            if (bankAccount == null) {
+                display("Please enter a valid bank name.", true, true);
+            }
+        } while (bankAccount == null);
+
+        return bankAccount;
+    }
+
 }
