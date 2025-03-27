@@ -7,6 +7,7 @@ class MyThread implements Runnable {
         thrdName = name;
     }
 
+    @Override
     public void run() {
         System.out.println(thrdName + " starting.");
         try {
