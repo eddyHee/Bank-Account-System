@@ -8,13 +8,11 @@ class Book {
     private final List<String> authors;
     private final LocalDateTime publishTime;
     private final Language language;
-    private final BookType type;
 
     public static class Builder {
 
         private String name;
         private List<String> authors;
-        private BookType type;
         private Language language;
         private LocalDateTime publishTime;
 
@@ -41,11 +39,6 @@ class Book {
             return this;
         }
 
-        public Builder type(String type) {
-            this.type = BookType.valueOf(type);
-            return this;
-        }
-
         public Book build() {
             return new Book(this);
         }
@@ -54,7 +47,6 @@ class Book {
     private Book(Builder builder) {
         this.name = builder.name;
         this.authors = builder.authors;
-        this.type = builder.type;
         this.publishTime = builder.publishTime;
         this.language = builder.language;
     }
@@ -65,10 +57,6 @@ class Book {
 
     public List<String> getAuthors() {
         return this.authors;
-    }
-
-    public BookType getType() {
-        return this.type;
     }
 
     public Language getLanguage() {
