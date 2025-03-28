@@ -26,6 +26,8 @@ public class BookEnums {
         FANTASY,
         BIOGRAPHY,
         SELF_HELP
+
+        
     }
 
     public enum Language {

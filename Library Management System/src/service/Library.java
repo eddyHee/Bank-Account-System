@@ -19,14 +19,42 @@ public class Library {
         this.memberList = new ArrayList<Member>();
     }
 
+    public String getName() {
+        return this.name;
+    }
+
     public void addBook(Book book) {
         this.book.add(book);
     }
 
+    public void addBooks(List<Book> books) {
+        this.book.addAll(books);
+    }
+
+    public List<Book> getBooks() {
+        return this.book;
+    }
+
     public void showBooks() {
+        if(this.book.isEmpty()) {
+            System.out.println("This library contain no book!");
+            return;
+        }
         for (Book book : this.book) {
             System.out.println(book);
         }
+    }
+
+    public List<LibraryItem> getAvailableBooks() {
+        List<LibraryItem> availableBooks = new ArrayList<>();
+
+        for(LibraryItem b : this.book) {
+            if(b.isAvailable()) {
+                availableBooks.add(b);
+            }
+        }
+
+        return availableBooks;
     }
 
     public void showBookNumber() {

@@ -7,7 +7,7 @@ import java.util.EnumSet;
 import java.util.Objects;
 import java.util.Set;
 
-public abstract class Book {
+public abstract class Book implements LibraryItem{
 
     final String name;
     final Set<BookEnums.Authors> authors;
@@ -51,11 +51,11 @@ public abstract class Book {
         type = builder.type;
     }
 
-    public String getName() {
+    public String getTitle() {
         return this.name;
     }
 
-    public Set<BookEnums.Authors> getAuthors() {
+    public Set<BookEnums.Authors> getAuthor() {
         return this.authors;
     }
 
@@ -63,7 +63,7 @@ public abstract class Book {
         return this.language;
     }
 
-    public LocalDateTime getPublishTime() {
+    public LocalDateTime getPublicationYear() {
         return this.publishTime;
     }
 
