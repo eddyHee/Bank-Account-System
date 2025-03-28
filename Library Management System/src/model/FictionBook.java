@@ -1,4 +1,6 @@
+package model;
 
+import enums.BookEnums;
 import java.util.Objects;
 
 public class FictionBook extends Book {

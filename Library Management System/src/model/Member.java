@@ -1,8 +1,10 @@
+package model;
 
+import service.Library;
 import java.util.ArrayList;
 import java.util.List;
 
-class Member {
+public class Member {
 
     private final String name;
     private Library belongToLibrary;

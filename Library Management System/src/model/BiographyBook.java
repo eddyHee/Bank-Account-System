@@ -1,4 +1,6 @@
+package model;
 
+import enums.BookEnums;
 import java.util.Objects;
 
 public class BiographyBook extends Book {
@@ -11,7 +13,7 @@ public class BiographyBook extends Book {
         }
 
         @Override
-        Book build() {
+        public Book build() {
             return new BiographyBook(this);
         }
 

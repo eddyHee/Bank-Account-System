@@ -1,28 +1,13 @@
-# Simple Java Makefile (all files in same directory)
+JFLAGS = -d out -cp out
+JC = javac
+SRC = src/Main.java src/**/*.java  # Removed standalone src/
 
-# Compiler and JVM settings
-JAVAC = javac
-JAVA = java
-JFLAGS = -g
-MAIN_CLASS = Main 
+all:
+	mkdir -p out
+	$(JC) $(JFLAGS) $(SRC)
 
-# Get all .java files in current directory
-SOURCES := $(wildcard *.java)
-CLASSES := $(SOURCES:.java=.class)
+run:
+	java -cp out Main
 
-.PHONY: all clean run
-
-# Default target - compile all
-all: $(CLASSES)
-
-# Rule to compile .java files to .class files
-%.class: %.java
-	$(JAVAC) $(JFLAGS) $<
-
-# Run the program
-run: $(CLASSES)
-	$(JAVA) $(MAIN_CLASS)
-
-# Clean up compiled files
 clean:
-	rm -f *.class
+	rm -rf out

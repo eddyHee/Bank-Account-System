@@ -1,8 +1,10 @@
+package service;
 
+import model.*;
 import java.util.ArrayList;
 import java.util.List;
 
-class Library {
+public class Library {
 
     private final String location;
     private final String name;

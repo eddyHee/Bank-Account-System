@@ -1,4 +1,6 @@
+package model;
 
+import enums.BookEnums;
 import java.text.MessageFormat;
 import java.time.LocalDateTime;
 import java.util.EnumSet;
