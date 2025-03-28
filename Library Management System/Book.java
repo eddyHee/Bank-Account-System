@@ -1,10 +1,13 @@
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 class Book {
 
     private final String name;
     private final List<String> authors;
+    private final LocalDateTime publishTime;
+    private final Language language;
     private final BookType type;
 
     public static class Builder {
@@ -12,8 +15,20 @@ class Book {
         private String name;
         private List<String> authors;
         private BookType type;
+        private Language language;
+        private LocalDateTime publishTime;
 
         public Builder() {
+        }
+
+        public Builder language(Language language) {
+            this.language = language;
+            return this;
+        }
+
+        public Builder publishTime(LocalDateTime time) {
+            this.publishTime = time;
+            return this;
         }
 
         public Builder name(String name) {
@@ -40,18 +55,28 @@ class Book {
         this.name = builder.name;
         this.authors = builder.authors;
         this.type = builder.type;
+        this.publishTime = builder.publishTime;
+        this.language = builder.language;
     }
 
     public String getName() {
         return this.name;
     }
 
-    public List<String> etAuthors() {
+    public List<String> getAuthors() {
         return this.authors;
     }
 
     public BookType getType() {
         return this.type;
+    }
+
+    public Language getLanguage() {
+        return this.language;
+    }
+
+    public LocalDateTime getPublishTime() {
+        return this.publishTime;
     }
 
 }
