@@ -5,13 +5,13 @@ class Book {
 
     private final String name;
     private final List<String> authors;
-    private final String type;
+    private final BookType type;
 
     public static class Builder {
 
         private String name;
         private List<String> authors;
-        private String type;
+        private BookType type;
 
         public Builder() {
         }
@@ -27,7 +27,7 @@ class Book {
         }
 
         public Builder type(String type) {
-            this.type = type;
+            this.type = BookType.valueOf(type);
             return this;
         }
 
@@ -50,7 +50,7 @@ class Book {
         return this.authors;
     }
 
-    public String getType() {
+    public BookType getType() {
         return this.type;
     }
 
