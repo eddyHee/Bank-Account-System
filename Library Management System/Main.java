@@ -14,8 +14,8 @@ class Main {
         for (int i = 0; i < 3; i++) {
             booklist.add(
                     new FictionBook.Builder("fiction book " + i)
-                            .authors(Authors.JamesBob)
-                            .language(Language.Chinese)
+                            .authors(BookEnums.Authors.JamesBob)
+                            .language(BookEnums.Language.Chinese)
                             .build()
             );
         }

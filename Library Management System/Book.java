@@ -7,27 +7,23 @@ import java.util.Set;
 public abstract class Book {
 
     final String name;
-    final Set<Authors> authors;
+    final Set<BookEnums.Authors> authors;
     final LocalDateTime publishTime;
-    final Language language;
+    final BookEnums.Language language;
 
     abstract static class Builder<T extends Builder<T>> {
 
         String name;
-        EnumSet<Authors> authors = EnumSet.noneOf(Authors.class);
-        Language language;
+        EnumSet<BookEnums.Authors> authors = EnumSet.noneOf(BookEnums.Authors.class);
+        BookEnums.Language language;
         LocalDateTime publishTime;
 
-        // public T name(String name) {
-        //     this.name = name;
-        //     return self();
-        // }
-        public T authors(Authors author) {
+        public T authors(BookEnums.Authors author) {
             authors.add(Objects.requireNonNull(author, "author can not be null"));
             return self();
         }
 
-        public T language(Language language) {
+        public T language(BookEnums.Language language) {
             this.language = language;
             return self();
         }
@@ -53,11 +49,11 @@ public abstract class Book {
         return this.name;
     }
 
-    public Set<Authors> getAuthors() {
+    public Set<BookEnums.Authors> getAuthors() {
         return this.authors;
     }
 
-    public Language getLanguage() {
+    public BookEnums.Language getLanguage() {
         return this.language;
     }
 

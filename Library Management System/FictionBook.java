@@ -3,15 +3,15 @@ import java.util.Objects;
 
 public class FictionBook extends Book {
 
-    private final BookType type;
+    private final BookEnums.BookType type;
 
     public static class Builder extends Book.Builder<Builder> {
 
-        private final BookType type;
+        private final BookEnums.BookType type;
 
         public Builder(String name) {
             super.name = name;
-            this.type = Objects.requireNonNull(BookType.FICTION, "Book type cannot be null");
+            this.type = Objects.requireNonNull(BookEnums.BookType.FICTION, "Book type cannot be null");
         }
 
         @Override
@@ -30,7 +30,7 @@ public class FictionBook extends Book {
         type = builder.type;
     }
 
-    public BookType getBookType() {
+    public BookEnums.BookType getBookType() {
         return this.type;
     }
 
