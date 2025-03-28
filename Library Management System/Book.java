@@ -1,61 +1,59 @@
 
 import java.time.LocalDateTime;
-import java.util.List;
+import java.util.EnumSet;
+import java.util.Set;
 
-class Book {
+abstract class Book {
 
     private final String name;
-    private final List<String> authors;
+    private final Set<Authors> authors;
     private final LocalDateTime publishTime;
     private final Language language;
 
-    public static class Builder {
+    abstract static class Builder<T extends Builder<T>> {
 
-        private String name;
-        private List<String> authors;
-        private Language language;
-        private LocalDateTime publishTime;
+        String name;
+        EnumSet<Authors> authors;
+        Language language;
+        LocalDateTime publishTime;
 
-        public Builder() {
-        }
-
-        public Builder language(Language language) {
-            this.language = language;
-            return this;
-        }
-
-        public Builder publishTime(LocalDateTime time) {
-            this.publishTime = time;
-            return this;
-        }
-
-        public Builder name(String name) {
+        public T name(String name) {
             this.name = name;
-            return this;
+            return self();
         }
 
-        public Builder authros(List<String> authors) {
-            this.authors = authors;
-            return this;
+        public T authors(Authors author) {
+            authors.add(author);
+            return self();
         }
 
-        public Book build() {
-            return new Book(this);
+        public T language(Language language) {
+            this.language = language;
+            return self();
         }
+
+        public T publishTime(LocalDateTime publishTime) {
+            this.publishTime = publishTime;
+            return self();
+        }
+
+        abstract Book build();
+
+        protected abstract T self();
     }
 
-    private Book(Builder builder) {
-        this.name = builder.name;
-        this.authors = builder.authors;
-        this.publishTime = builder.publishTime;
-        this.language = builder.language;
+    Book(Builder<?> builder) {
+        name = builder.name;
+        authors = builder.authors.clone();
+        publishTime = builder.publishTime;
+        language = builder.language;
     }
 
     public String getName() {
         return this.name;
     }
 
-    public List<String> getAuthors() {
+    public Set<Authors> getAuthors() {
         return this.authors;
     }
 
