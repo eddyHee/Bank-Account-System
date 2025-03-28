@@ -1,4 +1,5 @@
 
+import java.text.MessageFormat;
 import java.time.LocalDateTime;
 import java.util.EnumSet;
 import java.util.Objects;
@@ -10,6 +11,7 @@ public abstract class Book {
     final Set<BookEnums.Authors> authors;
     final LocalDateTime publishTime;
     final BookEnums.Language language;
+    final BookEnums.BookType type;
 
     abstract static class Builder<T extends Builder<T>> {
 
@@ -17,6 +19,7 @@ public abstract class Book {
         EnumSet<BookEnums.Authors> authors = EnumSet.noneOf(BookEnums.Authors.class);
         BookEnums.Language language;
         LocalDateTime publishTime;
+        BookEnums.BookType type;
 
         public T authors(BookEnums.Authors author) {
             authors.add(Objects.requireNonNull(author, "author can not be null"));
@@ -43,6 +46,7 @@ public abstract class Book {
         authors = builder.authors.clone();
         publishTime = builder.publishTime;
         language = builder.language;
+        type = builder.type;
     }
 
     public String getName() {
@@ -61,4 +65,12 @@ public abstract class Book {
         return this.publishTime;
     }
 
+    public BookEnums.BookType getBookType() {
+        return this.type;
+    }
+
+    @Override
+    public String toString() {
+        return MessageFormat.format("Book Name: {0}.\n\tAuthors: {1}.\n\tPublish time: {2}.\n\tLanguage: {3}.\n", this.name, this.authors, this.publishTime, this.language);
+    }
 }
