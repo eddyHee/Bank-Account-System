@@ -1,8 +1,8 @@
 package service;
 
-import model.*;
 import java.util.ArrayList;
 import java.util.List;
+import model.*;
 
 public class Library {
 
@@ -35,5 +35,10 @@ public class Library {
 
     public boolean isMember(Member member) {
         return this.memberList.contains(member);
+    }
+
+    @Override
+    public String toString() {
+        return this.name + "\n";
     }
 }

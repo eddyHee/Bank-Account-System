@@ -1,8 +1,8 @@
 package model;
 
-import service.Library;
 import java.util.ArrayList;
 import java.util.List;
+import service.Library;
 
 public class Member {
 
@@ -25,5 +25,10 @@ public class Member {
 
     public boolean returnBook(Book book) {
         return this.borrowList.remove(book);
+    }
+
+    @Override
+    public String toString() {
+        return this.name;
     }
 }
