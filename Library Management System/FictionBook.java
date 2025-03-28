@@ -1,4 +1,6 @@
 
+import java.util.Objects;
+
 public class FictionBook extends Book {
 
     private final BookType type;
@@ -7,8 +9,9 @@ public class FictionBook extends Book {
 
         private final BookType type;
 
-        public Builder() {
-            this.type = BookType.FICTION;
+        public Builder(String name) {
+            super.name = name;
+            this.type = Objects.requireNonNull(BookType.FICTION, "Book type cannot be null");
         }
 
         @Override
@@ -31,4 +34,9 @@ public class FictionBook extends Book {
         return this.type;
     }
 
+    @Override
+    public String toString() {
+        return "This is a fiction book with \n\tName: {"
+                + this.name + "}\n\tauthors: {" + this.authors + "}\n\ttype: {" + this.type + "}\n";
+    }
 }

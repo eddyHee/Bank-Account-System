@@ -1,29 +1,29 @@
 
 import java.time.LocalDateTime;
 import java.util.EnumSet;
+import java.util.Objects;
 import java.util.Set;
 
-abstract class Book {
+public abstract class Book {
 
-    private final String name;
-    private final Set<Authors> authors;
-    private final LocalDateTime publishTime;
-    private final Language language;
+    final String name;
+    final Set<Authors> authors;
+    final LocalDateTime publishTime;
+    final Language language;
 
     abstract static class Builder<T extends Builder<T>> {
 
         String name;
-        EnumSet<Authors> authors;
+        EnumSet<Authors> authors = EnumSet.noneOf(Authors.class);
         Language language;
         LocalDateTime publishTime;
 
-        public T name(String name) {
-            this.name = name;
-            return self();
-        }
-
+        // public T name(String name) {
+        //     this.name = name;
+        //     return self();
+        // }
         public T authors(Authors author) {
-            authors.add(author);
+            authors.add(Objects.requireNonNull(author, "author can not be null"));
             return self();
         }
 
