@@ -4,7 +4,7 @@ import enums.BookEnums;
 import java.util.Objects;
 import service.Library;
 
-public class BiographyBook extends Book implements LibraryItem{
+public class BiographyBook extends Book{
 
     private Library belowToLibrary;
     private boolean isAvailable;
@@ -40,4 +40,11 @@ public class BiographyBook extends Book implements LibraryItem{
     public boolean isAvailable() {
         return this.isAvailable;
     }
+
+    @Override
+    public void setAvailable(boolean available) {
+        this.isAvailable = available;
+    }
+
+
 }

@@ -22,9 +22,25 @@ public class Member {
         this.belongToLibrary = lib;
     }
 
-    public boolean borrowBook(Book book) {
+    public boolean borrowBook(Book book, Library lib) {
+        if (book == null) {
+            return false;
+        }
+        if (lib == null) {
+            return false;
+        }
+        if (lib.getBooks().contains(book) == false) {
+            return false;
+        }
+        if (book.isAvailable() == false) {
+            return false;
+        }
+        if (this.borrowList.contains(book)) {
+            return false;
+        }
         try {
             this.borrowList.add(book);
+            book.setAvailable(false);
             return true;
         } catch(Exception e) {
             return false;
@@ -33,7 +49,16 @@ public class Member {
     }
 
     public boolean returnBook(Book book) {
-        return this.borrowList.remove(book);
+        try {
+            if (book == null) {
+                return false;
+            }
+            book.setAvailable(true);
+            return this.borrowList.contains(book);
+        } catch(Exception e) {
+            return false;
+        }
+        
     }
 
     public String getName() {

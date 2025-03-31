@@ -64,6 +64,7 @@ public class Library {
     public boolean isMember(Member member) {
         return this.memberList.contains(member);
     }
+    
 
     @Override
     public String toString() {

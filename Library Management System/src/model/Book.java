@@ -71,6 +71,8 @@ public abstract class Book implements LibraryItem{
         return this.type;
     }
 
+    abstract void setAvailable(boolean available);
+
     @Override
     public String toString() {
         return MessageFormat.format("Book Name: {0}.\n\tAuthors: {1}.\n\tPublish time: {2}.\n\tLanguage: {3}.\n", this.name, this.authors, this.publishTime, this.language);

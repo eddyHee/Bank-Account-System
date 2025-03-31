@@ -119,7 +119,7 @@ public class Main {
     private static void registerNewMember(List<Member> members) {
         System.out.println("\n--- Register New Member ---");
         String name = getStringInput("Enter member name: ");
-        String email = getStringInput("Enter member email: ");
+        // String email = getStringInput("Enter member email: ");
         
         // Generate member ID
         // String memberId = "MEM-" + (members.size() + 1000);
@@ -165,7 +165,7 @@ public class Main {
         Member member = members.get(memberIndex);
         Book book = (Book) availableBooks.get(bookIndex);
         
-        if (member.borrowBook(book)) {
+        if (member.borrowBook(book, selectedLibrary)) {
             System.out.println("Successfully rented '" + book.getTitle() + "' to " + member.getName());
         } else {
             System.out.println("Failed to rent book. Member may have reached borrowing limit.");
@@ -223,7 +223,7 @@ public class Main {
         // Get book details
         String title = getStringInput("Enter book title: ");
         String author = getStringInput("Enter author: ");
-        String isbn = getStringInput("Enter ISBN: ");
+        // String isbn = getStringInput("Enter ISBN: ");
         int year = getIntInput("Enter publication year: ");
         String bookType = getStringInput("Enter book type({0}, {1}): ".formatted(
                 enums.BookEnums.BookType.BIOGRAPHY.name(), 
