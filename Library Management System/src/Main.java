@@ -181,6 +181,34 @@ public class Main {
         // 2. Show their borrowed books
         // 3. Select book to return
         // 4. Call member.returnBook(book)
+        System.out.println("\n--- Rent a Book ---");
+        
+        // Show available members
+        System.out.println("Available Members:");
+        for (int i = 0; i < members.size(); i++) {
+            System.out.println((i+1) + ". " + members.get(i).getName() + " (" + members.get(i).getMemberId() + ")");
+        }
+        int memberIndex = getIntInput("Select member: ") - 1;
+        
+        // Show borrowed books of selected member
+        Member selectedMember = members.get(memberIndex);
+        List<Book> borrowedBooks = selectedMember.getBorrowedBooks();
+        if (borrowedBooks.isEmpty()) {
+            System.out.println("No borrowed books for this member.");
+            return;
+        }
+        System.out.println("Borrowed Books:");
+        for (int i = 0; i < borrowedBooks.size(); i++) {
+            System.out.println((i+1) + ". " + borrowedBooks.get(i).getTitle());
+        }
+        int bookIndex = getIntInput("Select book to return: ") - 1;
+        // Return the book
+        Book bookToReturn = borrowedBooks.get(bookIndex);
+        if (selectedMember.returnBook(bookToReturn)) {
+            System.out.println("Successfully returned '" + bookToReturn.getTitle() + "' from " + selectedMember.getName());
+        } else {
+            System.out.println("Failed to return book.");
+        }
     }
 
     private static void addNewBook(List<Library> libraries) {
@@ -231,13 +259,4 @@ public class Main {
         System.out.print("\033[H\033[2J");
         System.out.flush();
     }
-
-    // // Your existing methods
-    // private static void generateResources(List<Member> members, List<Library> libraries) {
-    //     // Your implementation
-    // }
-
-    // private static void showInformation(List<Library> libraries, List<Member> members) {
-    //     // Your implementation
-    // }
 }
